@@ -1,0 +1,48 @@
+global vPatDivFolder, vPatDivFileName,type,vSelect1,vSelect2
+
+selectall
+select TIN=""
+vSelect1=info("selected")
+selectall
+select TIN≠""
+selectwithin str(«C#») contains str(lookupselected("PatDivTINs","C#",«C#»,"C#",0,0))
+
+selectreverse
+selectwithin TIN≠""
+vSelect2=info("selected")
+if vSelect1=vSelect2
+message "Nothing New to select! Macro will stop now."
+stop
+endif
+
+yesno "Add These Records?"
+if clipboard()="Yes"
+window "PatDivTINs"
+addrecord
+window "customer_history"
+loop
+copyrecord
+window "PatDivTINs"
+pasterecord
+window "customer_history"
+downrecord
+else
+stop
+endif
+until info("stopped")
+lastrecord
+window "PatDivTINs"
+lastrecord
+deleterecord
+nop
+
+Message "Please select the Correct File on the PatronageDividend computer to Save. After this CMD-S will work again"
+openfiledialog vPatDivFolder, vPatDivFileName,type,""
+saveas folderpath(vPatDivFolder)+vPatDivFileName
+message "File Saved!"
+
+
+
+
+
+

@@ -1,7 +1,11 @@
 global vPatDivFolder, vPatDivFileName,type,vSelect1,vSelect2
 
+openfile "customer_history"
+
 /**************Saves a copy with the date in the file 
 and cleans up after there are more than 4*/
+
+message "Please wait, saving a backup of both files"
 
 window "customer_history"
 saveacopyas "patronageadmin:Desktop:PatDivUpdate:Backups:"+"CH Backup"+datepattern(today(),"MMYY")
@@ -17,6 +21,7 @@ selectall
 
 /*#In the selection of PatDivTINs file, find all the records that have
 the same customer number in the customer_history file*/ 
+bigmessage "This next step may take a few minutes to search the Customer History File. Please do not click anything else until it finishes"
 select TIN≠""
 selectwithin str(«C#») contains str(lookupselected("customer_history","C#",«C#»,"C#",0,0))
 
@@ -45,6 +50,7 @@ if clipboard()="Yes"
         downrecord
         until info("stopped")
 else
+    Message "if there's an issue, please contact tech support"
     stop
 endif
         
@@ -53,6 +59,8 @@ window "customer_history"
 lastrecord
 deleterecord
 nop
+
+Message "Finished!"
 
 
 

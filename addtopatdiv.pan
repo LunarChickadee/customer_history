@@ -61,3 +61,6 @@ select TIN contains lookupselected("PatDivTINs","TINRedacted",«TIN»,"TINRedact
 ;if info("windows") contains "customeractivity"
 ;goform "customeractivity"
 ;endif
+
+filedate(thefolder,thefile)
+movefile

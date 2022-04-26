@@ -18,17 +18,18 @@ select TIN contains lookupselected("PatDivTINs","TINRedacted",«TIN»,"TINRedact
 
 
 
-///////////////////////////
-To fix windows for input in pat div file
-///////////////////////
+
+//***********To fix windows for input in pat div file*******************\\
+
+openfile "customer_history"
 
 global windows,custwindow,patwindow,ToClose,vChoice
 
-/*
-alertokcancel "This will now close all windows except for PatDivTINs and the current customer history File on this computer"
+
+alertokcancel "This will now close all windows except for PatDivTINs and customer_history File on this computer to reduce errors"
 if info("DialogTrigger") contains "cancel"
 stop
-endif
+endif  
 
 arraybuild windows,¶,"",info("windows")
 
@@ -48,7 +49,6 @@ patwindow=arraysearch(windows,"*pat*",1,¶)
 window custwindow
 select TIN≠""
 select lookupselected(patwindow,"TINRedacted","TIN"[-4,-1],"TIN","",0)
-*/
 
 select TIN contains lookupselected("PatDivTINs","TINRedacted",«TIN»,"TINRedacted","",0)
 

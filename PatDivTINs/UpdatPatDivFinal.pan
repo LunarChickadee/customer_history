@@ -4,13 +4,9 @@ openfile "customer_history"
 
 /**************Saves a copy with the date in the file 
 and cleans up after there are more than 4*/
-
 message "Please wait, saving a backup of both files"
 
-window "customer_history"
-saveacopyas "patronageadmin:Desktop:PatDivUpdate:Backups:"+"CH Backup"+datepattern(today(),"MMYY")
-window "PatDivTINs"
-saveacopyas "patronageadmin:Desktop:PatDivUpdate:Backups:"+"PD Backup"+datepattern(today(),"MMYY")
+call BackupFiles //this might not be the right name
 
 /*#Selects the appropriate info and keeps a record of how many records are selected
  #to make sure that you don't overwrite the whole Patronage file*/
@@ -59,6 +55,15 @@ window "customer_history"
 lastrecord
 deleterecord
 nop
+
+
+////******Note, this is set the the Unlinked file currently
+Message "All SSN's in customer_history will be shortened to the last 4 numbers, now." 
+window "customer_historyUL"
+field «TIN»
+select TIN≠""
+selectwithin length(«TIN»)>4
+formulafill «TIN»[-4,-1]
 
 Message "Finished!"
 

@@ -8,7 +8,7 @@ What this macro does:
 5. saves a .pan copy of the unlinked file since that can't get overwritten by the server
 */
 
-local vFieldsArray,vArraySize,vNum,vFinArray,vExportArray,vCurrentFolder,vCurrentFileName,vFileType,vSecondSave
+local vFieldsArray,vArraySize,vNum,vFinArray,vExportArray,vCurrentFolder,vCurrentFileName,vFileType,vSecondSave,vFolderName
 
 extendedexpressionstack
 
@@ -38,7 +38,7 @@ vFolderName=folder("patronageadmin:Desktop:PatDivUpdate:Backups:")
 vSecondSave=vFolderName  //for some reason this kept breaking if I didn't save it again
 ;clipboard()=vFolderName
 
-window "customer_history"
+window "customer_historyUL"
 arraybuild vExportArray,¶,"",exportline()
 vExportArray=vFinArray+¶+vExportArray
 ;stop

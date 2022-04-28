@@ -1,12 +1,13 @@
 global vPatDivFolder, vPatDivFileName,type,vSelect1,vSelect2
 
-openfile "customer_history"
+//Beta Notes: v2
+//change form customer_historyUL to customer_history
 
-/**************Saves a copy with the date in the file 
-and cleans up after there are more than 4*/
-message "Please wait, saving a backup of both files"
+openfile "customer_historyUL"
 
-call BackupFiles //this might not be the right name
+window "customer_historyUL"
+
+call BackupFiles
 
 /*#Selects the appropriate info and keeps a record of how many records are selected
  #to make sure that you don't overwrite the whole Patronage file*/
@@ -19,7 +20,7 @@ selectall
 the same customer number in the customer_history file*/ 
 bigmessage "This next step may take a few minutes to search the Customer History File. Please do not click anything else until it finishes"
 select TIN≠""
-selectwithin str(«C#») contains str(lookupselected("customer_history","C#",«C#»,"C#",0,0))
+selectwithin str(«C#») contains str(lookupselected("customer_historyUL","C#",«C#»,"C#",0,0))
 
 /*#find the ones that don't match*/
 selectreverse
@@ -28,7 +29,7 @@ vSelect2=info("selected")
 
 /*#this is the safety check for overwriting*/
 if vSelect1=vSelect2
-message "Nothing New to select! Macro will stop now."
+message "Nothing New to add! If this is wrong, make sure everyone in PatDivTINs has a C# and TIN."
 stop
 endif
 
@@ -40,7 +41,7 @@ if clipboard()="Yes"
     window "PatDivTINs"
     loop
         copyrecord
-        window "customer_history"
+        window "customer_historyUL"
         pasterecord
         window "PatDivTINs"
         downrecord
@@ -51,7 +52,7 @@ else
 endif
         
 lastrecord
-window "customer_history"
+window "customer_historyUL"
 lastrecord
 deleterecord
 nop

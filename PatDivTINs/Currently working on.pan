@@ -21,16 +21,17 @@ vFolderName=folder("patronageadmin:Desktop:PatDivUpdate:Backups:")
 arraybuild vExportArray,¶,"",exportline()
 message "here"
 
-
+/*
 This line keeps causing a stack overflow. No idea why. 
 ******************* 
 vExportArray2=vFinArray+¶+vExportArray 
 ********************
+*/
 
 
 
 ;stop
-filesave vFolderName,"CH Backup"+datepattern(today(),"MMYY")+".txt","",vExportArray2
+filesave vFolderName,"CH Backup"+datepattern(today(),"MMYY")+".txt","",vExportArray
 window "PatDivTINs"
 saveacopyas "patronageadmin:Desktop:PatDivUpdate:Backups:"+"PD Backup"+datepattern(today(),"MMYY")
 normalexpressionstack

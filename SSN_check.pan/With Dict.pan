@@ -1,5 +1,5 @@
 global CustNum1,CustNum2,CustNum3,CustNum4,TINstring,WinCust,
-WinMailing,WinSSN,CustNumArray,SeedsLineItemArray,SeedsElement,SeedsNonBlankElement,SeedsIncrement,BulbsNonBlankElement,BulbsIncrement,MooseNonBlankElement,MooseIncrement,OGSNonBlankElement,OGSIncrement,TreesNonBlankElement,TreesIncrement,BulbsLineItemArray,MooseLineItemArray,OGSLineItemArray,TreesLineItemArray,TreesElement,BulbsElement,OGSElement,MooseElement,CustNum1Array,CustNum2Array,CustNum3Array,CustNum4Array,CustCount,CustNums,vChoice,SourceRecordArray,DestinationRecord,Counter,Check1,Check2,Check3,Check4
+WinMailing,WinSSN,CustNumArray,SeedsLineItemArray,SeedsElement,SeedsNonBlankElement,SeedsIncrement,BulbsNonBlankElement,BulbsIncrement,MooseNonBlankElement,MooseIncrement,OGSNonBlankElement,OGSIncrement,TreesNonBlankElement,TreesIncrement,BulbsLineItemArray,MooseLineItemArray,OGSLineItemArray,TreesLineItemArray,TreesElement,BulbsElement,OGSElement,MooseElement,CustNum1Dict,CustNum2Dict,CustNum3Dict,CustNum4Dict,CustCount,CustNums,vChoice
 
 //window assignments
 WinCust="customer_history"
@@ -18,19 +18,10 @@ TreesElement=""
 BulbsElement=""
 OGSElement=""
 MooseElement=""
-CustNum1Array=""
-CustNum2Array=""
-CustNum3Array=""
-CustNum4Array=""
-SourceRecordArray=""
-DestinationRecord=""
-Counter=0
-Check1=""
-Check2=""
-Check3=""
-Check4=""
-
-
+CustNum1Dict=""
+CustNum2Dict=""
+CustNum3Dict=""
+CustNum4Dict=""
 
 
 //loops
@@ -117,16 +108,16 @@ if val(array(CustNumArray,CustCount,¬))>0
 Fill Account 
 */
 if vChoice=1
-CustNum1Array=CustNum1+¬+str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
+setdictionaryvalue CustNum1Dict,CustNum1,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
 endif
 if vChoice=2
-CustNum2Array=CustNum2+¬+str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
+setdictionaryvalue CustNum1Dict,CustNum2,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
 endif
 if vChoice=3
-CustNum3Array=CustNum3+¬+str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
+setdictionaryvalue CustNum1Dict,CustNum3,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
 endif
 if vChoice=4
-CustNum4Array=CustNum4+¬+str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
+setdictionaryvalue CustNum1Dict,CustNum4,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
 endif
 
 endif
@@ -135,64 +126,24 @@ if vChoice≠4
 goto Repeat
 endif
 
-bigmessage CustNum1Array+¶+CustNum2Array+¶+CustNum3Array+¶+CustNum4Array
-clipboard()=CustNum1Array+¶+CustNum2Array+¶+CustNum3Array+¶+CustNum4Array
-
-
-Check1=arrayrange(CustNum1Array,2,5,¬)
-Check2=arrayrange(CustNum2Array,2,5,¬)
-Check3=arrayrange(CustNum3Array,2,5,¬)
-Check4=arrayrange(CustNum4Array,2,5,¬)
-
-
-loop
-Counter=Counter+1
-if ArrayContains(Check1,str(Counter),¬)
-DestinationRecord=array(CustNum1Array,1,¬)
-endif
-if ArrayContains(Check2,str(Counter),¬)
-DestinationRecord=array(CustNum2Array,1,¬)
-endif
-if ArrayContains(Check3,str(Counter),¬)
-DestinationRecord=array(CustNum3Array,1,¬)
-endif
-if ArrayContains(Check4,str(Counter),¬)
-DestinationRecord=array(CustNum4Array,1,¬)
-endif
-repeatloopif DestinationRecord=""
-
-
-/*
-7254	15	0	6	12	17
-262068	13	0	12	8	4
-391429	0	0	3	0	0
-*/
-;loop 
-
-
-
-/*
-Counter=Counter+1
-
-loop
-Counter=Counter+1
-if ArrayContains CustNum1Array,str(Counter),¬)
-DestinationRecord=array(CustNum1Array,1,¬)
-if ArrayContains CustNum2Array,str(Counter),¬)
-DestinationRecord=array(CustNum2Array,1,¬)
-
-repeatloopif DestinationRecord=""
-
-setArrayionaryvalue SArray,
-message val(array(CustNum1Array,2,¬))
-if val(array(CustNum1Array,2,¬))>0
-SArray=val(array(CustNum1Array,1,¬))
-endif
-*/
-
 
 select val(CustNum1)=«C#»
 or val(CustNum2)=«C#»
 or val(CustNum3)=«C#»
 or val(CustNum4)=«C#»
 selectwithin «C#»>0
+
+clipboard()=CustNumDict
+/*
+clipboard()=CustNum1Dict+¶+CustNum2Dict+¶+CustNum3Dict+¶+CustNum4Dict
+7270	4	0	6	14	6
+172174	3	0	0	8	4
+*/
+
+/*
+˛7254ˇ15	0	6	12	17˛/7254ˇ
+˛262068ˇ13	0	12	8	4˛/262068ˇ
+˛391429ˇ0	0	3	0	0˛/391429ˇ
+*/
+
+

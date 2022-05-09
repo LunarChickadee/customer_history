@@ -1,0 +1,1 @@
+serverformulafill STest43 > 0 or TTest43 > 0, STest43 + TTest43

@@ -1,5 +1,5 @@
 global CustNum1,CustNum2,CustNum3,CustNum4,TINstring,WinCust,
-WinMailing,WinSSN,CustNumArray,SeedsLineItemArray,SeedsElement,SeedsNonBlankElement,SeedsIncrement,BulbsNonBlankElement,BulbsIncrement,MooseNonBlankElement,MooseIncrement,OGSNonBlankElement,OGSIncrement,TreesNonBlankElement,TreesIncrement,BulbsLineItemArray,MooseLineItemArray,OGSLineItemArray,TreesLineItemArray,TreesElement,BulbsElement,OGSElement,MooseElement,CustNum1Dict,CustNum2Dict,CustNum3Dict,CustNum4Dict,CustCount,CustNums,vChoice
+WinMailing,WinSSN,CustNumArray,SeedsLineItemArray,SeedsElement,SeedsNonBlankElement,SeedsIncrement,BulbsNonBlankElement,BulbsIncrement,MooseNonBlankElement,MooseIncrement,OGSNonBlankElement,OGSIncrement,TreesNonBlankElement,TreesIncrement,BulbsLineItemArray,MooseLineItemArray,OGSLineItemArray,TreesLineItemArray,TreesElement,BulbsElement,OGSElement,MooseElement,CustNumDict,CustNum2Dict,CustNum3Dict,CustNum4Dict,CustCount,CustNums,vChoice,Counter,SourceRecord,DestinationRecord
 
 //window assignments
 WinCust="customer_history"
@@ -18,10 +18,13 @@ TreesElement=""
 BulbsElement=""
 OGSElement=""
 MooseElement=""
-CustNum1Dict=""
+CustNumDict=""
 CustNum2Dict=""
 CustNum3Dict=""
 CustNum4Dict=""
+Counter=0
+SourceRecord=""
+DestinationRecord=""
 
 
 //loops
@@ -108,16 +111,16 @@ if val(array(CustNumArray,CustCount,¬))>0
 Fill Account 
 */
 if vChoice=1
-setdictionaryvalue CustNum1Dict,CustNum1,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
+setdictionaryvalue CustNumDict,CustNum1,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
 endif
 if vChoice=2
-setdictionaryvalue CustNum1Dict,CustNum2,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
+setdictionaryvalue CustNumDict,CustNum2,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
 endif
 if vChoice=3
-setdictionaryvalue CustNum1Dict,CustNum3,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
+setdictionaryvalue CustNumDict,CustNum3,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
 endif
 if vChoice=4
-setdictionaryvalue CustNum1Dict,CustNum4,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
+setdictionaryvalue CustNumDict,CustNum4,str(SeedsNonBlankElement)+¬+str(BulbsNonBlankElement)+¬+str(TreesNonBlankElement)+¬+str(OGSNonBlankElement)+¬+str(MooseNonBlankElement)
 endif
 
 endif
@@ -125,6 +128,16 @@ endif
 if vChoice≠4
 goto Repeat
 endif
+
+loop
+Counter=Counter+1
+getdictionararykey CustNumDict,Counter,DestinationRecord
+repeatloopif DestinationRecord=""
+
+if length(DestinationRecord)>6
+message "Please Choose Source/Destination Manually"
+endif
+
 
 
 select val(CustNum1)=«C#»
@@ -134,8 +147,9 @@ or val(CustNum4)=«C#»
 selectwithin «C#»>0
 
 clipboard()=CustNumDict
+bigmessage listdictionarynames CustNumDict,""
 /*
-clipboard()=CustNum1Dict+¶+CustNum2Dict+¶+CustNum3Dict+¶+CustNum4Dict
+clipboard()=CustNumDict+¶+CustNum2Dict+¶+CustNum3Dict+¶+CustNum4Dict
 7270	4	0	6	14	6
 172174	3	0	0	8	4
 */

@@ -105,7 +105,7 @@ if val(array(CustNumArray,CustCount,¬))>0
 Fill Account 
 */
 if vChoice=1
-CustNum1=CustNum1+¬+SeedsNonBlankElement+¬+BulbsNonBlankElement+¬+TreesNonBlankElement+¬+OGSNonBlankElement+¬+MooseNonBlankElement
+str(CustNum1)=CustNum1+¬+SeedsNonBlankElement+¬+BulbsNonBlankElement+¬+TreesNonBlankElement+¬+OGSNonBlankElement+¬+MooseNonBlankElement
 endif
 
 endif

@@ -1,4 +1,4 @@
-;global findcurrent
+global findcurrent
 ;, vSerialNum
 findcurrent=0
 ;vSerialNum=""

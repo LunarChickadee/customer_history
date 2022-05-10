@@ -11,7 +11,7 @@ vTIN=TIN
 vConsent=Consent
 vNotified=Notified
 vEquity=Equity
-vPastAddress=MAd+" "+City+" "+St+Zip
+vPastAddress=str(«C#»)+","+Con+","+" "+MAd+" "+City+" "+St+" "+str(Zip)+";"
 
 vS44=0
 vS43=0

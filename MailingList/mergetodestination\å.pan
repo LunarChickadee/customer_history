@@ -1,7 +1,9 @@
-if vSerialNum notcontains info("serialnumber") 
-message "Sorry, you can not use Coman+0 without approval."
+/*
+if dbinfo(folderpath("folder"),"") notcontains lower("dedup") 
+message "Sorry, you can not use CMD+d without approval from Ken or Lunar"
 stop
 endif
+*/
 
 
 global vtargetcust
@@ -16,7 +18,9 @@ vOGS32, vOGS31, vOGS30, vOGS29, vOGS28, vOGS27, vOGS26, vOGS25, vOGS24, vOGS23,
 vOGS22, vOGS21, vOGS20, 
 vT42, vT43, vT44, vT45, vT41, vT40, vT39, vT38, vT37, vT36, vT35, vT34, vT33, vT32, vT31, vT30, 
 vT29, vT28, vT27, vT26, vT25, vT24, vT23, vT22, vT21, vT20, vT19,
-vTaxName, vTIN, vConsent, vNotified, vEquity,vPastAddress
+vTaxName, vTIN, vConsent, vNotified, vEquity, vPastAddress
+
+vPastAddress=""
 
 
 vtargetcust=«C#»
@@ -74,6 +78,7 @@ if vTaxName≠""
     taxname=vTaxName
         else 
             taxname=vTaxName+", "+taxname
+            arraydeduplicate taxname,taxname,","
     endif
 endif
 
@@ -82,6 +87,7 @@ if vTIN≠""
     TIN=vTIN
         else 
             TIN=vTIN+", "+TIN
+            arraydeduplicate TIN,TIN,","
     endif
 endif
 
@@ -90,6 +96,7 @@ if vConsent≠""
     Consent=vConsent
         else 
             Consent=vConsent+", "+Consent
+            arraydeduplicate Consent,Consent,","
     endif
 endif
 
@@ -98,6 +105,7 @@ if vNotified≠""
     Notified=vNotified
         else 
             Notified=vNotified+", "+Notified
+            arraydeduplicate Notified,Notified,","
     endif
 endif
 
@@ -112,6 +120,7 @@ if vPastAddress≠""
         «2ndAdd»=vPastAddress
     else
         «2ndAdd»=«2ndAdd»+","+vPastAddress
+        arraydeduplicate «2ndAdd»,«2ndAdd»,","
     endif
 endif
 

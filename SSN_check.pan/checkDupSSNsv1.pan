@@ -197,4 +197,8 @@ or val(CustNum3)=«C#»
 or val(CustNum4)=«C#»
 selectwithin «C#»>0
 
+selectwithin «C#»≠val(DestinationRecord)
+
+farcall 44mailinglist, SelectSourceRecord
+
 

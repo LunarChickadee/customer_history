@@ -11,6 +11,7 @@ vTIN=TIN
 vConsent=Consent
 vNotified=Notified
 vEquity=Equity
+vPastAddress=MAd+" "+City+" "+St+Zip
 
 vS44=0
 vS43=0

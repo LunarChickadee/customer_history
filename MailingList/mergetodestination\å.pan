@@ -16,7 +16,7 @@ vOGS32, vOGS31, vOGS30, vOGS29, vOGS28, vOGS27, vOGS26, vOGS25, vOGS24, vOGS23,
 vOGS22, vOGS21, vOGS20, 
 vT42, vT43, vT44, vT45, vT41, vT40, vT39, vT38, vT37, vT36, vT35, vT34, vT33, vT32, vT31, vT30, 
 vT29, vT28, vT27, vT26, vT25, vT24, vT23, vT22, vT21, vT20, vT19,
-vTaxName, vTIN, vConsent, vNotified, vEquity
+vTaxName, vTIN, vConsent, vNotified, vEquity,vPastAddress
 
 
 vtargetcust=«C#»
@@ -104,6 +104,14 @@ endif
 if vEquity≠0
    if Equity=0
     Equity=vEquity
+    endif
+endif
+
+if vPastAddress≠""
+    if «2ndAdd»=""
+        «2ndAdd»=vPastAddress
+    else
+        «2ndAdd»=«2ndAdd»+","+vPastAddress
     endif
 endif
 

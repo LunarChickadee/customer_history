@@ -161,7 +161,7 @@ DestinationRecord=array(CustNum4Array,1,¬)
 endif
 repeatloopif DestinationRecord=""
 
-
+message DestinationRecord
 /*
 7254	15	0	6	12	17
 262068	13	0	12	8	4
@@ -196,3 +196,5 @@ or val(CustNum2)=«C#»
 or val(CustNum3)=«C#»
 or val(CustNum4)=«C#»
 selectwithin «C#»>0
+
+

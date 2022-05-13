@@ -487,5 +487,14 @@ YESNO "do you want to delete the customer number " + str(vsourcecust)+" "+Con+" 
     copycell
         deleterecord
         call .HistoryDelete
+            window "customer_history:customeractivity"
+            find «C#»=vsourcecust
+
+            YesNo "delete this record in customer history?" +" "+ str(«C#») + " "+ Con
+            if clipboard()="Yes"
+            deleterecord
+            endif
+            window "44 mailing list"
+
     endif
 ;vsourcecust
